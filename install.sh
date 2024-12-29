@@ -69,19 +69,19 @@ check_dependencies() {
 # Install Panel
 install_panel() {
     echo -e "${GREEN}Installing Panel...${NC}"
-    git clone https://github.com/hydralabs-beta/panel.git
-    cd panel
+    git clone https://github.com/hydralabs-beta/panel.git /etc/panel
+    cd /etc/panel
     npm install
     npm run seed
 
     # Ask for user details and server port
-    echo -e "${YELLOW}Enter username: ${NC}"
+    echo -e "${WHITE}Enter username: ${NC}"
     read username
-    echo -e "${YELLOW}Enter email: ${NC}"
+    echo -e "${WHITE}Enter email: ${NC}"
     read email
-    echo -e "${YELLOW}Enter password: ${NC}"
+    echo -e "${WHITE}Enter password: ${NC}"
     read password
-    echo -e "${YELLOW}Enter server port: ${NC}"
+    echo -e "${WHITE}Enter server port: ${NC}"
     read server_port
 
     # Update config.json
@@ -103,12 +103,13 @@ EOL
 
     # Start Panel using PM2
     pm2 start index.js --name "panel"
-    echo -e "${GREEN}Panel is running with PM2.${NC}"
+    echo -e "${GREEN}Panel is running on Port $server_port.${NC}"
+    echo -e "${WHITE}Panel Folder is on `/etc/panel`.${NC}"
 }
 
 # Main Menu
 echo -e "${CYAN}Select an option:${NC}"
-echo -e "1. Install Panel Only"
+echo -e "1. Install Panel"
 echo -e "2. Exit"
 read -p "Enter your choice (1-2): " choice
 
